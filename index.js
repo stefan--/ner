@@ -14,7 +14,7 @@ function get(opts, text, callback) {
 	});
 
 	socket.on('data', function (data) {
-		var re = /<([A-Z]+?)>(.+?)<\/\1>/g;
+		var re = /<([A-Z-]+?)>(.+?)<\/\1>/g;
 		var str = data.toString();
 
 		var res = {};
@@ -22,13 +22,14 @@ function get(opts, text, callback) {
 
 		var m;
 		var entities = {
-			LOCATION: [],
-			ORGANIZATION: [],
-			DATE: [],
-			MONEY: [],
-			PERSON: [],
-			PERCENT: [],
-			TIME: []
+			['I-LOC']: [],
+			['I-ORG']: [],
+			['I-DATE']: [],
+			['I-MON']: [],
+			['I-PER']: [],
+			['I-PERCENT']: [],
+			['I-TIME']: [],
+			['I-MISC']: []
 		};
 
 		var _parsed = [];
